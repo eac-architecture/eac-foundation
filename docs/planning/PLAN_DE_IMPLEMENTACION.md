@@ -25,15 +25,14 @@ PF-005 se ejecuta mediante estos bloques, en orden:
 
 | Bloque | Alcance | Estado | Evidencia |
 |---|---|---|---|
-| CI-001 | contrato Bash y Pipeline Tekton para G0-G4 | En validación | build y 177 pruebas locales aprobados; Tasks y Pipeline aplicados al clúster local |
+| CI-001 | contrato Bash y Pipeline Tekton para G0-G4 | Completado | Pipeline ejecutado sobre `1098b95`: validación, build y 177 pruebas aprobados |
 | CI-002 | eventos de pull request y rama principal con Pipelines as Code | Pendiente | `PipelineRun` versionados en `.tekton/` |
 | REL-001 | package, SBOM y evidencias para G5-G7 | Pendiente | candidato de release verificable |
 | REL-002 | firma, procedencia y publicación para G8 | Pendiente | NuGet estable e inmutable |
 
-CI-001 se cierra al ejecutar el Pipeline contra una revisión publicada. El
-repositorio aún no tiene un commit ni un remoto configurado; crear y publicar
-esa revisión es el prerrequisito inmediato. La definición y los comandos de
-operación están en
+El siguiente bloque es CI-002: versionar los `PipelineRun` de pull request y
+rama principal para que Pipelines as Code invoque el contrato ya validado. La
+definición y los comandos de operación de CI-001 están en
 [Integración continua](../operations/CONTINUOUS_INTEGRATION.md).
 
 Los gates transversales se definen en

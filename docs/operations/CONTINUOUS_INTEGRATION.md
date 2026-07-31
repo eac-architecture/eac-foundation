@@ -99,6 +99,9 @@ o Results.
 
 ## 7. Límite del incremento
 
-CI-001 termina cuando el Pipeline se ejecuta correctamente contra una revisión
-publicada. CI-002 añadirá los `PipelineRun` de `.tekton/` para pull request y
-rama principal mediante Pipelines as Code.
+CI-001 quedó validado el 31 de julio de 2026 contra la revisión publicada
+`1098b95`. Los resultados `commit-sha`, `validation-status` y `test-status`
+fueron resueltos por Tekton y el `PipelineRun` terminó en `Succeeded`.
+
+CI-002 añadirá los `PipelineRun` de `.tekton/` para pull request y rama
+principal mediante Pipelines as Code.
