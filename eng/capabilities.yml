@@ -1,0 +1,51 @@
+schemaVersion: 1
+product: EAC.Foundation
+version: 0.1.0-alpha.17
+targetFramework: net10.0
+profiles:
+  - foundation
+capabilities:
+  hosting: false
+  aspnetCore: false
+  configurationServer: false
+  security: false
+  observability: false
+  messaging: false
+  kafka: false
+  outgoingHttp: false
+  httpResilience: false
+modules:
+  sharedKernel: implemented
+  domain:
+    entity: implemented
+    aggregateRoot: implemented
+    valueObject: implemented
+  application:
+    useCaseRequests: implemented
+    commands: implemented
+    queries: implemented
+    useCases: implemented
+    dispatching: implemented
+    pipeline: implemented
+    validation: implemented
+    pagination: implemented
+    persistencePorts: implemented
+    conformanceAudit: validated
+exceptions: []
+conformance:
+  coveredRules:
+    - EAC-CONF-APP-001
+    - EAC-CONF-APP-003
+    - EAC-CONF-APP-004
+    - EAC-CONF-APP-005
+    - EAC-CONF-APP-006
+    - EAC-CONF-APP-007
+    - EAC-CONF-APP-008
+    - EAC-CONF-APP-009
+    - EAC-CONF-APP-010
+    - EAC-CONF-APP-011
+    - EAC-CONF-APP-012
+  delegatedRules:
+    - id: EAC-CONF-APP-002
+      owner: EAC.Application.Runtime
+      reason: Use Case uniqueness requires the runtime composition manifest.

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>EAC.Foundation</AssemblyName>
+    <RootNamespace>EAC.Foundation</RootNamespace>
+    <PackageId>EAC.Foundation</PackageId>
+    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
+    <Title>EAC Foundation</Title>
+    <Authors>EAC</Authors>
+    <Description>Reusable primitives and contracts for Domain and Application in .NET.</Description>
+    <PackageTags>eac;foundation;ddd;cqrs;clean-architecture</PackageTags>
+    <Version>0.1.0-alpha.17</Version>
+    <IsPackable>true</IsPackable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>portable</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts\packages</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" Link="README.md" />
+  </ItemGroup>
+</Project>

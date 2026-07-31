@@ -1,0 +1,12 @@
+.vs/
+.vscode/
+.idea/
+**/bin/
+**/obj/
+artifacts/
+TestResults/
+*.user
+*.suo
+*.nupkg
+*.snupkg
+/config/tekton-credentials.env
