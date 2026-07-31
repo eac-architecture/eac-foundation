@@ -290,7 +290,8 @@ El diseño del catálogo está preparado para implementación cuando:
 - el Starter puede seleccionar capacidades sin instalar todo Foundation;
 - seguridad, observabilidad y pruebas forman parte de la publicación;
 - existe una estrategia de migración para consumidores;
-- cada repositorio tiene pipeline y ownership propios.
+- cada repositorio tiene scripts, binding, ejecución y ownership propios; la
+  orquestación común se consume desde EAC Pipeline Catalog.
 
 ## 12. Decisión relacionada
 

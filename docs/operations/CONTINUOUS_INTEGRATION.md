@@ -4,9 +4,11 @@
 
 ## 1. Propósito
 
-Implementar CI-001 para ejecutar los gates G0-G4 de `EAC.Foundation` mediante
-el mismo contrato Bash en una estación de desarrollo y en Tekton. Este bloque
-no firma, publica ni consume credenciales de NuGet.
+Ejecutar los gates G0-G4 de `EAC.Foundation` mediante el mismo contrato Bash
+en una estación de desarrollo y en Tekton. Foundation consume el perfil
+compartido `nuget-ci` de EAC Pipeline Catalog; no mantiene una copia de
+las Tasks ni de la Pipeline. Este bloque no firma, publica ni consume
+credenciales de NuGet.
 
 ## 2. Contrato Bash
 
@@ -27,81 +29,64 @@ La ejecución rápida es:
 `pack.sh` no forma parte de `ci.sh`. La generación, verificación, SBOM y
 publicación del artefacto pertenecen a los siguientes bloques de PF-005.
 
-## 3. Recursos Tekton
+## 3. Binding de Foundation
 
 ```text
-ci/tekton/
-├── tasks/
-│   ├── checkout.yaml
-│   ├── validate.yaml
-│   └── verify.yaml
-├── pipelines/
-│   └── continuous-integration.yaml
-├── workspaces/
-│   └── source-volume-claim-template.yaml
-└── pod-template.yaml
+.tekton/
+└── continuous-integration.yaml
 ```
+
+El archivo `.tekton/continuous-integration.yaml` contiene únicamente:
+
+- los eventos `pull_request` y `push` dirigidos a `main`;
+- los parámetros dinámicos de repositorio y commit;
+- el workspace efímero y la Service Account de CI;
+- la referencia inmutable a EAC Pipeline Catalog `v0.1.0`.
+
+La Pipeline `eac-nuget-ci` y sus Tasks pertenecen al repositorio
+`eac-pipeline-catalog`.
 
 ### Orden de ejecución
 
 1. `checkout` resuelve una revisión Git y publica el commit SHA.
 2. `validate` ejecuta `scripts/validate.sh` sobre ese checkout.
-3. `verify` ejecuta `scripts/ci.sh` sin secretos de release.
-4. el Pipeline publica resultados pequeños de commit, validación y pruebas.
+3. `build` ejecuta `scripts/build.sh` una sola vez.
+4. `test` ejecuta `scripts/test.sh --no-build` sobre el resultado anterior.
+5. la Pipeline publica resultados pequeños de commit, validación, build y
+   pruebas.
 
 Las Tasks usan usuarios sin privilegios, eliminan capabilities Linux y no
 montan el socket de Docker. Las imágenes se fijan a versiones explícitas.
 
-## 4. Instalación en el namespace de ejecución
+## 4. Ejecución
 
-```bash
-./scripts/apply-tekton-ci.sh
-```
+Existen únicamente dos entradas:
 
-Valores predeterminados:
+1. `scripts/ci.sh` ejecuta el ciclo rápido directamente en la estación de
+   desarrollo;
+2. un `pull_request` o `push` hacia `main` activa el `PipelineRun` mediante
+   Pipelines as Code.
 
-| Variable | Valor |
-|---|---|
-| `KUBE_CONTEXT` | `kind-eac-cicd` |
-| `TEKTON_NAMESPACE` | `eac-cicd` |
-| `TEKTON_SERVICE_ACCOUNT` | `eac-ci` |
+Foundation no instala Tasks/Pipelines ni proporciona un iniciador Tekton
+manual. Pipelines as Code resuelve la Pipeline remota fijada a `v0.1.0`, enlaza
+`{{source_url}}` y `{{revision}}`, y genera un `PipelineRun` autocontenido. La
+instalación y prueba manual del catálogo pertenecen a `eac-pipeline-catalog`.
 
-## 5. Ejecución manual
-
-El repositorio debe existir y la revisión debe estar publicada antes de
-iniciar el Pipeline:
-
-```bash
-./scripts/run-tekton-ci.sh \
-  https://github.com/eac-architecture/eac-foundation.git \
-  main
-```
-
-Antes de modificar Tekton, el script ejecuta `git ls-remote` sin permitir un
-prompt de credenciales. Si el repositorio no existe, es privado o la revisión
-no está publicada, termina con un mensaje accionable y no crea un
-`PipelineRun` fallido.
-
-Superada esa validación, aplica las definiciones versionadas, crea un PVC
-efímero de 2 GiB, inicia el `PipelineRun`, muestra sus logs y devuelve un exit
-code de error cuando Tekton no termina correctamente.
-
-## 6. Resultados
+## 5. Resultados
 
 | Resultado | Fuente |
 |---|---|
 | `commit-sha` | revisión inmutable resuelta por checkout |
 | `validation-status` | resultado de alcance y gobierno |
+| `build-status` | resultado del contrato de build |
 | `test-status` | resultado de build y pruebas |
 
 No se escriben tokens, claves, certificados ni URLs con credenciales en Params
 o Results.
 
-## 7. Límite del incremento
+## 6. Límite del incremento
 
 CI-001 quedó validado el 31 de julio de 2026 contra la revisión publicada
-`1098b95`. Los resultados `commit-sha`, `validation-status` y `test-status`
-fueron resueltos por Tekton y el `PipelineRun` terminó en `Succeeded`.
-
-CI-002 añadirá los `PipelineRun` de `.tekton/` para pull request y rama
-principal mediante Pipelines as Code.
+`1098b95`. La migración al catálogo compartido y el binding de CI-002 están
+implementados localmente. Su cierre requiere publicar EAC Pipeline Catalog
+`v0.1.0` y comprobar al menos un evento real de Pipelines as Code.

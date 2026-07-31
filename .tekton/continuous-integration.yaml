@@ -1,0 +1,38 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: eac-foundation-ci
+  annotations:
+    pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/max-keep-runs: "5"
+    pipelinesascode.tekton.dev/pipeline: >-
+      https://raw.githubusercontent.com/eac-architecture/eac-pipeline-catalog/v0.1.0/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml
+  labels:
+    app.kubernetes.io/name: eac-foundation
+    app.kubernetes.io/component: continuous-integration
+spec:
+  pipelineRef:
+    name: eac-nuget-ci
+  params:
+    - name: repo-url
+      value: "{{source_url}}"
+    - name: revision
+      value: "{{revision}}"
+    - name: configuration
+      value: Release
+  taskRunTemplate:
+    serviceAccountName: eac-ci
+    podTemplate:
+      securityContext:
+        fsGroup: 65532
+        fsGroupChangePolicy: OnRootMismatch
+  workspaces:
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
