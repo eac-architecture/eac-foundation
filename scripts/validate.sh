@@ -47,5 +47,5 @@ grep -qE '^exceptions:[[:space:]]*\[\][[:space:]]*$' "$manifest" || {
     exit 1
 }
 
-"$root_dir/scripts/validate-docs.sh"
+bash "$root_dir/scripts/validate-docs.sh"
 printf '[OK] Scope and governance validation completed\n'
