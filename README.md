@@ -26,9 +26,9 @@ versiones y pipelines propios.
 ## Documentación
 
 - [Índice documental](docs/INDICE_DOCUMENTAL.md)
-- [Índice documental](docs/INDICE_DOCUMENTAL.md)
 - [Plan de implementación](docs/planning/PLAN_DE_IMPLEMENTACION.md)
 - [Integración continua](docs/operations/CONTINUOUS_INTEGRATION.md)
+- [Candidato de release](docs/operations/RELEASE_CANDIDATE.md)
 - [Identidad y límites](docs/architecture/EAC_FOUNDATION.md)
 - [SharedKernel](docs/architecture/EAC_FOUNDATION_SHARED_KERNEL.md)
 - [Domain](docs/architecture/EAC_FOUNDATION_DOMAIN.md)
@@ -37,7 +37,9 @@ versiones y pipelines propios.
 
 ## Estado
 
-El producto se encuentra en implementación inicial. La versión `0.1.0-alpha.17` valida el cierre de Application, pero todavía no representa la publicación estable `1.0.0`.
+El producto se encuentra en implementación inicial. `VERSION` declara
+`0.1.0-alpha.18` como versión preliminar vigente; todavía no representa una
+publicación final ni estable.
 
 El primer incremento establece:
 
@@ -72,20 +74,22 @@ eac-foundation/
 │   ├── decisions/
 │   ├── planning/
 │   ├── governance/
+│   ├── operations/
 │   └── INDICE_DOCUMENTAL.md
+├── .config/
+│   └── dotnet-tools.json
+├── .tekton/
+│   └── continuous-integration.yaml
 ├── eng/
 │   └── capabilities.yml
-├── ci/
-│   └── tekton/
-│       ├── tasks/
-│       ├── pipelines/
-│       └── workspaces/
 ├── scripts/
 │   ├── ci.sh
 │   ├── validate.sh
 │   ├── build.sh
 │   ├── test.sh
-│   └── pack.sh
+│   ├── pack.sh
+│   ├── release-candidate.sh
+│   └── version.sh
 ├── src/
 │   └── EAC.Foundation/
 ├── tests/
@@ -96,11 +100,13 @@ eac-foundation/
 ├── Directory.Packages.props
 ├── EAC.Foundation.sln
 ├── NuGet.Config
+├── VERSION
 └── global.json
 ```
 
-El siguiente incremento preparará la publicación estable del núcleo mediante
-los gates de release, sin añadir nuevas capacidades funcionales a Application.
+El siguiente incremento consolidará el flujo de candidatos alpha y beta. La
+publicación final se diseñará posteriormente y no forma parte del estado
+actual.
 
 ## Validación local
 

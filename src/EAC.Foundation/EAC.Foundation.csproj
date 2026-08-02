@@ -8,7 +8,7 @@
     <Authors>EAC</Authors>
     <Description>Reusable primitives and contracts for Domain and Application in .NET.</Description>
     <PackageTags>eac;foundation;ddd;cqrs;clean-architecture</PackageTags>
-    <Version>0.1.0-alpha.17</Version>
+    <Version>0.0.0-local</Version>
     <IsPackable>true</IsPackable>
     <IsAotCompatible>true</IsAotCompatible>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

@@ -38,6 +38,10 @@ EAC Foundation:
 - participa en una matriz de compatibilidad entre productos independientes;
 - carece de lógica, contratos y nombres de dominios consumidores;
 - se consume con versiones explícitas;
+- declara su versión preliminar en el archivo `VERSION`; build, package y
+  candidato deben usar exactamente ese valor;
+- admite únicamente versiones `alpha.N` o `beta.N` hasta que una decisión
+  posterior habilite release candidates o versiones finales;
 - no exige herencia desde clases base universales;
 - consume Configuration y Options nativos e incorpora solo capacidades adicionales de seguridad, observabilidad y pruebas;
 - es consumido por el starter y puede ser consumido directamente por aplicaciones autorizadas.

@@ -1,6 +1,6 @@
 schemaVersion: 1
 product: EAC.Foundation
-version: 0.1.0-alpha.17
+versionSource: VERSION
 targetFramework: net10.0
 profiles:
   - foundation

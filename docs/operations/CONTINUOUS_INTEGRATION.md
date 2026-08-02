@@ -26,8 +26,9 @@ La ejecución rápida es:
 ./scripts/ci.sh
 ```
 
-`pack.sh` no forma parte de `ci.sh`. La generación, verificación, SBOM y
-publicación del artefacto pertenecen a los siguientes bloques de PF-005.
+`pack.sh` no forma parte de `ci.sh`. La generación, verificación y SBOM se
+describen en [Candidato de release](RELEASE_CANDIDATE.md); la publicación
+pertenece a REL-002.
 
 ## 3. Binding de Foundation
 
@@ -60,17 +61,19 @@ montan el socket de Docker. Las imágenes se fijan a versiones explícitas.
 
 ## 4. Ejecución
 
-Existen únicamente dos entradas:
+Existen tres entradas al mismo contrato:
 
 1. `scripts/ci.sh` ejecuta el ciclo rápido directamente en la estación de
    desarrollo;
 2. un `pull_request` o `push` hacia `main` activa el `PipelineRun` mediante
-   Pipelines as Code.
+   Pipelines as Code;
+3. `eac-pipeline-catalog/scripts/run-ci.sh` permite iniciar manualmente la
+   Pipeline instalada, indicando el repositorio y la revisión.
 
-Foundation no instala Tasks/Pipelines ni proporciona un iniciador Tekton
-manual. Pipelines as Code resuelve la Pipeline remota fijada a `v0.1.0`, enlaza
+Foundation no instala Tasks/Pipelines ni contiene un iniciador Tekton manual.
+Pipelines as Code resuelve la Pipeline remota fijada a `v0.1.0`, enlaza
 `{{source_url}}` y `{{revision}}`, y genera un `PipelineRun` autocontenido. La
-instalación y prueba manual del catálogo pertenecen a `eac-pipeline-catalog`.
+instalación y la ejecución manual pertenecen a `eac-pipeline-catalog`.
 
 ## 5. Resultados
 
@@ -86,7 +89,8 @@ o Results.
 
 ## 6. Límite del incremento
 
-CI-001 quedó validado el 31 de julio de 2026 contra la revisión publicada
-`1098b95`. La migración al catálogo compartido y el binding de CI-002 están
-implementados localmente. Su cierre requiere publicar EAC Pipeline Catalog
-`v0.1.0` y comprobar al menos un evento real de Pipelines as Code.
+CI-001 y la ejecución manual del perfil compartido quedaron validados contra
+la revisión `c524e72`: build sin warnings y 177 pruebas aprobadas. El binding
+de CI-002 referencia EAC Pipeline Catalog `v0.1.0`; su cierre requiere
+restaurar el recurso `Repository` y comprobar un evento real de Pipelines as
+Code.
