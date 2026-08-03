@@ -648,4 +648,4 @@ PF-004 está validado en `0.1.0-alpha.17`. `alpha.6..10` estableció CQRS, Use C
 
 La [auditoría de cierre de Application](https://github.com/eac-architecture/eac-foundation/blob/main/docs/governance/AUDITORIA_CIERRE_APPLICATION.md) aprueba PF-004 y autoriza PF-005 sin añadir otra librería ni ensamblado.
 
-El estado, la dependencia y las evidencias se mantienen en el [plan de implementación de Platform](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/planning/PLAN_DE_IMPLEMENTACION_DE_PLATAFORMA.md).
+El estado, la dependencia y las evidencias se mantienen en el [plan maestro](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/planning/PLAN_MAESTRO_DE_IMPLEMENTACION.md).

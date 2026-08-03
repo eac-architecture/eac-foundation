@@ -38,6 +38,10 @@ EAC Foundation:
 - participa en una matriz de compatibilidad entre productos independientes;
 - carece de lógica, contratos y nombres de dominios consumidores;
 - se consume con versiones explícitas;
+- declara su versión preliminar en el archivo `VERSION`; build, package y
+  candidato deben usar exactamente ese valor;
+- admite únicamente versiones `alpha.N` o `beta.N` hasta que una decisión
+  posterior habilite release candidates o versiones finales;
 - no exige herencia desde clases base universales;
 - consume Configuration y Options nativos e incorpora solo capacidades adicionales de seguridad, observabilidad y pruebas;
 - es consumido por el starter y puede ser consumido directamente por aplicaciones autorizadas.
@@ -101,6 +105,6 @@ Crear un ADR sustituto o complementario si:
 
 - [EAC Foundation](https://github.com/eac-architecture/eac-foundation/blob/main/docs/architecture/EAC_FOUNDATION.md)
 - [Service Starter](https://github.com/eac-architecture/eac-service-starter/blob/main/docs/architecture/SERVICE_STARTER.md)
-- [Catálogo de capacidades](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/catalog/CATALOGO_DE_COMPONENTES.md)
-- [Auditoría de cohesión](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/governance/PACKAGE_COHESION_AUDIT.md)
-- [ADR-0010](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/decisions/ADR-0010-parameterized-service-starter.md)
+- [Catálogo de capacidades](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/catalog/CATALOGO_DE_COMPONENTES.md)
+- [Auditoría de cohesión](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/governance/PACKAGE_COHESION_AUDIT.md)
+- [ADR-0010](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/decisions/ADR-0010-parameterized-service-starter.md)
