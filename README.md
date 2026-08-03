@@ -19,7 +19,7 @@ versiones publicadas; no copian el código fuente ni cambian los contratos del
 producto por necesidades particulares.
 
 La arquitectura transversal, el catálogo y los estándares pertenecen a
-[`eac-architecture-docs`](https://github.com/eac-architecture/eac-architecture-docs).
+[`eac-engineering-governance`](https://github.com/eac-architecture/eac-engineering-governance).
 Los demás productos reutilizables tienen repositorios, documentación, paquetes,
 versiones y pipelines propios.
 

@@ -16,6 +16,6 @@
 | DOC-086 | [Candidato de release](operations/RELEASE_CANDIDATE.md) | package, SBOM, smoke test y evidencias de G5-G7 |
 
 La arquitectura transversal y el catálogo de componentes pertenecen a
-[`eac-architecture-docs`](https://github.com/eac-architecture/eac-architecture-docs).
+[`eac-engineering-governance`](https://github.com/eac-architecture/eac-engineering-governance).
 
 El siguiente identificador global disponible es `DOC-087`.

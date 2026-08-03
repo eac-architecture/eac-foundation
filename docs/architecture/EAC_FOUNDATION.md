@@ -13,7 +13,7 @@
 | Repositorio y NuGet de núcleo | `eac-foundation` / `EAC.Foundation` |
 | Namespace raíz | `EAC` |
 | Versionado | SemVer propio y matriz de compatibilidad del catálogo |
-| Pipeline | `eac-foundation-ci`, conforme al [estándar Tekton](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/design/CI_CD_PORTABLE.md) |
+| Pipeline | `eac-foundation-ci`, conforme al [estándar Tekton](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/design/CI_CD_PORTABLE.md) |
 | Consumidores | starter y aplicaciones .NET autorizadas |
 | Runtime objetivo | .NET 10 LTS (`net10.0`) |
 
@@ -85,7 +85,7 @@ Hosting, Application Runtime y Testing forman parte del ecosistema EAC, pero no 
 
 | Paquete | Capa y responsabilidad |
 |---|---|
-| [Configuration y Options de .NET](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/standards/configuration/CONFIGURATION_STANDARD.md) | uso directo; no se publica un wrapper EAC y el provider externo se agrega en Hosting |
+| [Configuration y Options de .NET](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/standards/configuration/CONFIGURATION_STANDARD.md) | uso directo; no se publica un wrapper EAC y el provider externo se agrega en Hosting |
 | [`EAC.Application.Runtime`](https://github.com/eac-architecture/eac-application-runtime/blob/main/docs/architecture/EAC_APPLICATION_RUNTIME.md) | dispatcher, behaviors y Validation de Application |
 | [`EAC.Hosting`](https://github.com/eac-architecture/eac-hosting/blob/main/docs/architecture/EAC_HOSTING.md) | composición raíz, ciclo de vida y health |
 | [`EAC.Hosting.AspNetCore`](https://github.com/eac-architecture/eac-hosting-aspnetcore/blob/main/docs/architecture/EAC_HOSTING_ASPNETCORE.md) | adaptación del ciclo de vida y bootstrap para servicios HTTP |
@@ -109,7 +109,7 @@ Hosting, Application Runtime y Testing forman parte del ecosistema EAC, pero no 
 
 ### 4.4 Persistencia
 
-Todas las familias aplican el [estándar de conexiones y stores de datos](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/standards/data/EAC_DATA_STORES.md): `ConnectionProfile → LogicalStore tipado → Mapping técnico → acceso tipado`. Tablas, colecciones, documentos, streams, aliases e índices no son conexiones ni parámetros de Repository, QueryService o Projection Writer.
+Todas las familias aplican el [estándar de conexiones y stores de datos](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/standards/data/EAC_DATA_STORES.md): `ConnectionProfile → LogicalStore tipado → Mapping técnico → acceso tipado`. Tablas, colecciones, documentos, streams, aliases e índices no son conexiones ni parámetros de Repository, QueryService o Projection Writer.
 
 | Paquete | Responsabilidad |
 |---|---|
@@ -299,12 +299,12 @@ La identidad y límites están registrados en [ADR-0011](../decisions/ADR-0011-e
 
 ## 13. Catálogo objetivo inicial
 
-El inventario y la clasificación detallados se mantienen en el [Catálogo de capacidades](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/catalog/CATALOGO_DE_COMPONENTES.md).
+El inventario y la clasificación detallados se mantienen en el [Catálogo de capacidades](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/catalog/CATALOGO_DE_COMPONENTES.md).
 
 | Capacidad | Decisión para EAC Foundation |
 |---|---|
 | Shared Kernel | mantenerlo mínimo y sin bases de entidad o repositorio universal |
-| Configuración | aplicar el [estándar EAC](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/standards/configuration/CONFIGURATION_STANDARD.md) mediante Configuration, Options, `IValidateOptions<T>` y `ValidateOnStart` directamente |
+| Configuración | aplicar el [estándar EAC](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/standards/configuration/CONFIGURATION_STANDARD.md) mediante Configuration, Options, `IValidateOptions<T>` y `ValidateOnStart` directamente |
 | Seguridad | separar autenticación y autorización de los adaptadores concretos |
 | HTTP | permanecer independiente de persistencia |
 | Persistencia relacional | separar núcleo y un paquete por proveedor |
@@ -318,4 +318,4 @@ Cada capacidad debe superar revisión de responsabilidad, seguridad, compatibili
 
 F3 está completado y F4 se encuentra en curso. SharedKernel, Domain y Application están validados dentro del mismo ensamblado `EAC.Foundation`. La [auditoría de cierre de Application](https://github.com/eac-architecture/eac-foundation/blob/main/docs/governance/AUDITORIA_CIERRE_APPLICATION.md) aprueba `0.1.0-alpha.17` con 177 pruebas y autoriza PF-005.
 
-El estado de los 16 repositorios y NuGet del catálogo, sus ondas, dependencias, gates y evidencias se mantiene en el [plan de implementación de Platform](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/planning/PLAN_DE_IMPLEMENTACION_DE_PLATAFORMA.md). Este documento conserva el diseño y los límites del producto; no replica el tablero operativo.
+El estado de los 16 repositorios y NuGet del catálogo, sus ondas, dependencias, gates y evidencias se mantiene en el [plan maestro](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/planning/PLAN_MAESTRO_DE_IMPLEMENTACION.md). Este documento conserva el diseño y los límites del producto; no replica el tablero operativo.

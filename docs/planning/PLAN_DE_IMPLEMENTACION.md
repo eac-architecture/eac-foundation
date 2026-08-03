@@ -36,7 +36,7 @@ El siguiente resultado es ejecutar REL-001 mediante la Pipeline compartida
 abierto hasta comprobar un evento real de Pipelines as Code.
 
 Los gates transversales se definen en
-[EAC Architecture](https://github.com/eac-architecture/eac-architecture-docs).
+[EAC Architecture](https://github.com/eac-architecture/eac-engineering-governance).
 
 La incorporación de una capacidad que pertenezca a otro NuGet requiere su
 propio repositorio; no amplía este ensamblado por conveniencia.
