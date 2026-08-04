@@ -27,11 +27,11 @@ PF-005 se ejecuta mediante estos bloques, en orden:
 |---|---|---|---|
 | CI-001 | contrato Bash y Pipeline Tekton para G0-G4 | Completado | Pipeline ejecutado sobre `1098b95`: validación, build y 177 pruebas aprobados |
 | CI-002 | eventos de pull request y rama principal con Pipelines as Code | En curso | binding publicado; registro y evento real pendientes |
-| REL-001 | candidatos alpha, beta y rc, SBOM y evidencias para G5-G7 | En curso | `VERSION` como fuente única; `0.1.0-rc.1` en validación mediante Tekton |
+| REL-001 | candidatos alpha, beta y rc, SBOM y evidencias para G5-G7 | Completado | `0.1.0-rc.1` validado mediante Tekton: build, 177 pruebas, package, símbolos, SBOM y smoke test |
 | REL-002 | firma, procedencia y publicación para G8 | Pendiente | NuGet estable e inmutable |
 
-El siguiente resultado es ejecutar REL-001 mediante la Pipeline compartida
-`eac-nuget-release-candidate`. La operación está en
+El siguiente resultado es publicar el prerelease aprobado mediante un tag
+inmutable sobre `release/0.1.0`. La generación del candidato se describe en
 [Candidato de release](../operations/RELEASE_CANDIDATE.md). CI-002 permanece
 abierto hasta comprobar un evento real de Pipelines as Code.
 
