@@ -8,6 +8,8 @@ export DOTNET_NOLOGO=1
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 solution="$root_dir/EAC.Foundation.sln"
 configuration="${BUILD_CONFIGURATION:-Release}"
+source "$root_dir/scripts/version.sh"
+package_version="$(resolve_package_version)"
 
 case "$configuration" in
     Release | Debug)
@@ -27,6 +29,7 @@ dotnet format "$solution" \
     --verbosity minimal
 dotnet build "$solution" \
     --configuration "$configuration" \
-    --no-restore
+    --no-restore \
+    "-p:Version=$package_version"
 
 printf '[OK] Build quality validation completed\n'

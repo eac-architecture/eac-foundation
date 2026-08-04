@@ -19,16 +19,16 @@ versiones publicadas; no copian el código fuente ni cambian los contratos del
 producto por necesidades particulares.
 
 La arquitectura transversal, el catálogo y los estándares pertenecen a
-[`eac-architecture-docs`](https://github.com/eac-architecture/eac-architecture-docs).
+[`eac-engineering-governance`](https://github.com/eac-architecture/eac-engineering-governance).
 Los demás productos reutilizables tienen repositorios, documentación, paquetes,
 versiones y pipelines propios.
 
 ## Documentación
 
 - [Índice documental](docs/INDICE_DOCUMENTAL.md)
-- [Índice documental](docs/INDICE_DOCUMENTAL.md)
 - [Plan de implementación](docs/planning/PLAN_DE_IMPLEMENTACION.md)
 - [Integración continua](docs/operations/CONTINUOUS_INTEGRATION.md)
+- [Candidato de release](docs/operations/RELEASE_CANDIDATE.md)
 - [Identidad y límites](docs/architecture/EAC_FOUNDATION.md)
 - [SharedKernel](docs/architecture/EAC_FOUNDATION_SHARED_KERNEL.md)
 - [Domain](docs/architecture/EAC_FOUNDATION_DOMAIN.md)
@@ -37,7 +37,10 @@ versiones y pipelines propios.
 
 ## Estado
 
-El producto se encuentra en implementación inicial. La versión `0.1.0-alpha.17` valida el cierre de Application, pero todavía no representa la publicación estable `1.0.0`.
+El producto se encuentra en estabilización. `VERSION` declara
+`0.1.0-rc.1` como versión preliminar vigente; el contrato ya admite la
+identidad final `0.1.0`, cuya publicación exige el cierre gobernado hacia
+`main`.
 
 El primer incremento establece:
 
@@ -72,20 +75,22 @@ eac-foundation/
 │   ├── decisions/
 │   ├── planning/
 │   ├── governance/
+│   ├── operations/
 │   └── INDICE_DOCUMENTAL.md
+├── .config/
+│   └── dotnet-tools.json
+├── .tekton/
+│   └── continuous-integration.yaml
 ├── eng/
 │   └── capabilities.yml
-├── ci/
-│   └── tekton/
-│       ├── tasks/
-│       ├── pipelines/
-│       └── workspaces/
 ├── scripts/
 │   ├── ci.sh
 │   ├── validate.sh
 │   ├── build.sh
 │   ├── test.sh
-│   └── pack.sh
+│   ├── pack.sh
+│   ├── release-candidate.sh
+│   └── version.sh
 ├── src/
 │   └── EAC.Foundation/
 ├── tests/
@@ -96,11 +101,13 @@ eac-foundation/
 ├── Directory.Packages.props
 ├── EAC.Foundation.sln
 ├── NuGet.Config
+├── VERSION
 └── global.json
 ```
 
-El siguiente incremento preparará la publicación estable del núcleo mediante
-los gates de release, sin añadir nuevas capacidades funcionales a Application.
+El incremento vigente madura la misma línea `release/*` mediante versiones
+`alpha.N`, `beta.N` y `rc.N`. La versión estable solo se publicará después de
+integrar el release aprobado en `main`.
 
 ## Validación local
 

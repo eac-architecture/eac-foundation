@@ -148,4 +148,4 @@ PF-004 se aprueba porque:
 
 Se autoriza PF-005: preparación de la release estable del núcleo. Debe abordarse por bloques de release y no añadir capacidades funcionales nuevas a Application. Su alcance incluye gates G0-G8, compatibilidad pública, símbolos, Source Link, SBOM, firma y publicación controlada de `EAC.Foundation` `1.0.0`.
 
-El seguimiento continúa en el [plan de implementación de Platform](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/planning/PLAN_DE_IMPLEMENTACION_DE_PLATAFORMA.md).
+El seguimiento continúa en el [plan maestro](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/planning/PLAN_MAESTRO_DE_IMPLEMENTACION.md).

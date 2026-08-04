@@ -13,8 +13,9 @@
 | DOC-069 | [Auditoría de Application](https://github.com/eac-architecture/eac-foundation/blob/main/docs/governance/AUDITORIA_CIERRE_APPLICATION.md) | evidencia de cierre de PF-004 |
 | DOC-083 | [Plan de implementación](planning/PLAN_DE_IMPLEMENTACION.md) | release del NuGet `EAC.Foundation` |
 | DOC-084 | [Integración continua](operations/CONTINUOUS_INTEGRATION.md) | contrato Bash y pipeline Tekton de CI-001 |
+| DOC-086 | [Candidato de release](operations/RELEASE_CANDIDATE.md) | package, SBOM, smoke test y evidencias de G5-G7 |
 
 La arquitectura transversal y el catálogo de componentes pertenecen a
-[`eac-architecture-docs`](https://github.com/eac-architecture/eac-architecture-docs).
+[`eac-engineering-governance`](https://github.com/eac-architecture/eac-engineering-governance).
 
-El siguiente identificador global disponible es `DOC-085`.
+El siguiente identificador global disponible es `DOC-087`.

@@ -323,5 +323,5 @@ El contrato quedó aprobado durante F3 e implementado en F4 dentro de `EAC.Found
 
 `EAC.Foundation.Domain` está validado dentro del mismo ensamblado y NuGet con
 Entity, AggregateRoot y ValueObject. Su evidencia de cierre se mantiene como
-PF-003 en el [plan de implementación de Platform](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/planning/PLAN_DE_IMPLEMENTACION_DE_PLATAFORMA.md);
+PF-003 en el [plan maestro](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/planning/PLAN_MAESTRO_DE_IMPLEMENTACION.md);
 Application está validado como PF-004 y el siguiente incremento es PF-005.

@@ -365,4 +365,4 @@ El contrato está aprobado y PF-003 está validado. `IEntity<TId>` y `Entity<TId
 
 PF-003 queda cerrado. El siguiente incremento es PF-004 Application; cualquier cambio posterior del contrato Domain se gestionará mediante compatibilidad SemVer y nuevas evidencias.
 
-El estado y las evidencias se mantienen en el [plan de implementación de Platform](https://github.com/eac-architecture/eac-architecture-docs/blob/main/docs/planning/PLAN_DE_IMPLEMENTACION_DE_PLATAFORMA.md).
+El estado y las evidencias se mantienen en el [plan maestro](https://github.com/eac-architecture/eac-engineering-governance/blob/main/docs/planning/PLAN_MAESTRO_DE_IMPLEMENTACION.md).
