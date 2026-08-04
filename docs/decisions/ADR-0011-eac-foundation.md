@@ -40,8 +40,8 @@ EAC Foundation:
 - se consume con versiones explícitas;
 - declara su versión preliminar en el archivo `VERSION`; build, package y
   candidato deben usar exactamente ese valor;
-- admite únicamente versiones `alpha.N` o `beta.N` hasta que una decisión
-  posterior habilite release candidates o versiones finales;
+- admite `alpha.N`, `beta.N` y `rc.N` durante la estabilización; la versión
+  final se habilita únicamente tras integrar el release aprobado en `main`;
 - no exige herencia desde clases base universales;
 - consume Configuration y Options nativos e incorpora solo capacidades adicionales de seguridad, observabilidad y pruebas;
 - es consumido por el starter y puede ser consumido directamente por aplicaciones autorizadas.
@@ -54,6 +54,14 @@ EAC Foundation:
 - `eac-service-starter` genera estructura, referencias, configuración, pruebas y automatización.
 - una solución consumidora aporta dominio y decide qué capacidades activa.
 - los tres productos tienen repositorios, versiones, pipelines y roadmaps independientes.
+
+## Enmienda de release
+
+El 4 de agosto de 2026 se eliminó la restricción transitoria que limitaba
+`VERSION` a `alpha.N` y `beta.N`. Foundation adopta la secuencia completa
+`alpha.N → beta.N → rc.N → estable` definida por el estándar
+transversal de ramas y releases. Esta enmienda no cambia la identidad ni el
+contrato público del paquete.
 
 ## Alternativas consideradas
 

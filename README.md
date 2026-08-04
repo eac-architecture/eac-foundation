@@ -38,7 +38,7 @@ versiones y pipelines propios.
 ## Estado
 
 El producto se encuentra en implementación inicial. `VERSION` declara
-`0.1.0-alpha.18` como versión preliminar vigente; todavía no representa una
+`0.1.0-rc.1` como versión preliminar vigente; todavía no representa una
 publicación final ni estable.
 
 El primer incremento establece:
@@ -104,9 +104,9 @@ eac-foundation/
 └── global.json
 ```
 
-El siguiente incremento consolidará el flujo de candidatos alpha y beta. La
-publicación final se diseñará posteriormente y no forma parte del estado
-actual.
+El incremento vigente madura la misma línea `release/*` mediante versiones
+`alpha.N`, `beta.N` y `rc.N`. La versión estable solo se publicará después de
+integrar el release aprobado en `main`.
 
 ## Validación local
 

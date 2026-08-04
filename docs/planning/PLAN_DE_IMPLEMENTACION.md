@@ -27,7 +27,7 @@ PF-005 se ejecuta mediante estos bloques, en orden:
 |---|---|---|---|
 | CI-001 | contrato Bash y Pipeline Tekton para G0-G4 | Completado | Pipeline ejecutado sobre `1098b95`: validación, build y 177 pruebas aprobados |
 | CI-002 | eventos de pull request y rama principal con Pipelines as Code | En curso | binding publicado; registro y evento real pendientes |
-| REL-001 | candidato alpha/beta, SBOM y evidencias para G5-G7 | En curso | `VERSION` como fuente única y contrato local aprobado; ejecución Tekton pendiente |
+| REL-001 | candidatos alpha, beta y rc, SBOM y evidencias para G5-G7 | En curso | `VERSION` como fuente única; `0.1.0-rc.1` en validación mediante Tekton |
 | REL-002 | firma, procedencia y publicación para G8 | Pendiente | NuGet estable e inmutable |
 
 El siguiente resultado es ejecutar REL-001 mediante la Pipeline compartida

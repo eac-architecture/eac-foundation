@@ -14,8 +14,8 @@ read_package_version() {
     }
 
     declared_version="$(tr -d '[:space:]' < "$version_file")"
-    if [[ ! "$declared_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-(alpha|beta)\.([1-9][0-9]*)$ ]]; then
-        printf '[ERROR] VERSION must be a SemVer alpha or beta version such as 0.1.0-alpha.18\n' >&2
+    if [[ ! "$declared_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-(alpha|beta|rc)\.([1-9][0-9]*)$ ]]; then
+        printf '[ERROR] VERSION must be a SemVer alpha, beta or rc version such as 0.1.0-rc.1\n' >&2
         return 1
     fi
 
