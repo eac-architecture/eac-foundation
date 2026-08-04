@@ -38,6 +38,18 @@ project_package="$(sed -nE 's/.*<PackageId>([^<]+)<\/PackageId>.*/\1/p' "$projec
 project_version="$(sed -nE 's/.*<Version>([^<]+)<\/Version>.*/\1/p' "$project")"
 project_framework="$(sed -nE 's/.*<TargetFramework>([^<]+)<\/TargetFramework>.*/\1/p' "$root_dir/Directory.Build.props")"
 source "$root_dir/scripts/version.sh"
+validate_package_version "1.2.3" || {
+    printf '[ERROR] Stable SemVer versions must be accepted\n' >&2
+    exit 1
+}
+validate_package_version "1.2.3-rc.1" || {
+    printf '[ERROR] Governed prerelease SemVer versions must be accepted\n' >&2
+    exit 1
+}
+if validate_package_version "1.2.3-preview.1"; then
+    printf '[ERROR] Unsupported prerelease channels must be rejected\n' >&2
+    exit 1
+fi
 package_version="$(resolve_package_version)"
 
 [[ "$manifest_product" == "$project_package" ]] || {

@@ -37,9 +37,10 @@ versiones y pipelines propios.
 
 ## Estado
 
-El producto se encuentra en implementación inicial. `VERSION` declara
-`0.1.0-rc.1` como versión preliminar vigente; todavía no representa una
-publicación final ni estable.
+El producto se encuentra en estabilización. `VERSION` declara
+`0.1.0-rc.1` como versión preliminar vigente; el contrato ya admite la
+identidad final `0.1.0`, cuya publicación exige el cierre gobernado hacia
+`main`.
 
 El primer incremento establece:
 

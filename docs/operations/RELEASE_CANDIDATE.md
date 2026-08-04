@@ -12,7 +12,7 @@ símbolos y SBOM para que G8 pueda publicar posteriormente los mismos bytes.
 
 | Entrada | Regla |
 |---|---|
-| `VERSION` | fuente única; admite `<major>.<minor>.<patch>-alpha.N`, `-beta.N` o `-rc.N` durante la estabilización |
+| `VERSION` | fuente única; admite `<major>.<minor>.<patch>-alpha.N`, `-beta.N`, `-rc.N` y la versión estable sin sufijo |
 | `PACKAGE_VERSION` | comprobación opcional; si se proporciona debe coincidir exactamente con `VERSION` |
 | `RELEASE_COMMIT` | commit inmutable; Tekton usa el resultado de checkout |
 | configuración | siempre `Release` |
@@ -56,6 +56,7 @@ madurez se modifica ese único archivo en una revisión Git de `release/*`:
 0.1.0-alpha.19
 0.1.0-beta.1
 0.1.0-rc.1
+0.1.0
 ```
 
 ## 4. Ejecución con Tekton
@@ -98,7 +99,7 @@ permanecen en el workspace y no se copian a Results.
 - no firma packages;
 - no crea ni mueve tags Git;
 - no cambia la versión declarada en el proyecto;
-- no admite todavía una versión final sin sufijo;
+- una versión final sin sufijo se verifica en `release/*`, pero solo se publica desde un tag estable sobre `main`;
 - no calcula versiones desde ramas, fechas o números de ejecución;
 - no recibe API keys;
 - no recompila después de las pruebas.
