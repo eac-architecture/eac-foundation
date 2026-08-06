@@ -343,7 +343,22 @@ Son cambios incompatibles:
 - API pública verificada mediante snapshot;
 - build Release, trimming y paquete determinista para `net10.0`.
 
-## 12. Criterios de aceptación
+## 12. Matriz de trazabilidad de reglas
+
+La matriz aplica el
+[estándar transversal de trazabilidad](https://github.com/eac-architecture/eac-engineering-governance/blob/develop/docs/standards/testing/RULE_TRACEABILITY_STANDARD.md):
+cada ID existe en `eng/capabilities.yml`, en este diseño y en al menos una
+prueba marcada con el mismo `Trait("Rule", "<ID>")`.
+
+| ID | Regla de diseño | Evidencia ejecutable primaria |
+|---|---|---|
+| `EAC-CONF-DOM-001` | La entidad conserva identidad genérica, transiencia y materialización controlada. | [`EntityTests.cs`](../../tests/EAC.Foundation.UnitTests/EntityTests.cs), [`DomainPublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/DomainPublicApiContractTests.cs) |
+| `EAC-CONF-DOM-002` | La igualdad de entidades depende del tipo concreto y de una identidad no transitoria. | [`EntityTests.cs`](../../tests/EAC.Foundation.UnitTests/EntityTests.cs) |
+| `EAC-CONF-DOM-003` | El agregado mantiene semántica de entidad, identificador genérico y contratos de agregado/eventos. | [`AggregateRootTests.cs`](../../tests/EAC.Foundation.UnitTests/AggregateRootTests.cs), [`DomainPublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/DomainPublicApiContractTests.cs) |
+| `EAC-CONF-DOM-004` | Los eventos de dominio conservan orden, solo lectura, snapshot y limpieza controlada. | [`AggregateRootTests.cs`](../../tests/EAC.Foundation.UnitTests/AggregateRootTests.cs) |
+| `EAC-CONF-DOM-005` | La igualdad de value objects depende del tipo concreto y de sus componentes ordenados. | [`ValueObjectTests.cs`](../../tests/EAC.Foundation.UnitTests/ValueObjectTests.cs), [`DomainPublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/DomainPublicApiContractTests.cs) |
+
+## 13. Criterios de aceptación
 
 El diseño se considera cerrado cuando:
 
@@ -355,7 +370,7 @@ El diseño se considera cerrado cuando:
 - el paquete no contiene reglas de una solución consumidora;
 - todas las invariantes tienen pruebas definidas.
 
-## 13. Estado de implementación
+## 14. Estado de implementación
 
 El contrato está aprobado y PF-003 está validado. `IEntity<TId>` y `Entity<TId>` están implementados desde `0.1.0-alpha.3`; sus reglas `EAC-CONF-DOM-001` y `EAC-CONF-DOM-002` cubren identidad, transiencia, igualdad por tipo concreto, operadores y hash.
 

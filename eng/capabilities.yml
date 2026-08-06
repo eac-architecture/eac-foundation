@@ -34,6 +34,18 @@ modules:
 exceptions: []
 conformance:
   coveredRules:
+    - EAC-CONF-FOUND-001
+    - EAC-CONF-FOUND-002
+    - EAC-CONF-FOUND-003
+    - EAC-CONF-FOUND-004
+    - EAC-CONF-FOUND-005
+    - EAC-CONF-FOUND-006
+    - EAC-CONF-FOUND-007
+    - EAC-CONF-DOM-001
+    - EAC-CONF-DOM-002
+    - EAC-CONF-DOM-003
+    - EAC-CONF-DOM-004
+    - EAC-CONF-DOM-005
     - EAC-CONF-APP-001
     - EAC-CONF-APP-003
     - EAC-CONF-APP-004
@@ -49,3 +61,4 @@ conformance:
     - id: EAC-CONF-APP-002
       owner: EAC.Application.Runtime
       reason: Use Case uniqueness requires the runtime composition manifest.
+      externalRule: EAC-RT-REG-003

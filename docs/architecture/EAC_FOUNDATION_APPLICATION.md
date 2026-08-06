@@ -615,7 +615,30 @@ Son cambios incompatibles:
 - snapshot de API pública;
 - build Release con analizadores de trimming/AOT, snapshot público y paquete determinista para `net10.0`.
 
-## 15. Criterios de aceptación
+## 15. Matriz de trazabilidad de reglas
+
+La matriz aplica el
+[estándar transversal de trazabilidad](https://github.com/eac-architecture/eac-engineering-governance/blob/develop/docs/standards/testing/RULE_TRACEABILITY_STANDARD.md).
+Una regla delegada conserva su ID y declara explícitamente el componente
+propietario y su evidencia; no se replica una prueba que pertenece a otro
+ensamblado.
+
+| ID | Regla de diseño | Evidencia ejecutable primaria |
+|---|---|---|
+| `EAC-CONF-APP-001` | Commands, Queries y sus casos de uso declaran respuestas estáticas mediante contratos `UseCase`. | [`UseCaseRequestTests.cs`](../../tests/EAC.Foundation.UnitTests/UseCaseRequestTests.cs), [`ApplicationUseCasePublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/ApplicationUseCasePublicApiContractTests.cs) |
+| `EAC-CONF-APP-002` | Cada request tiene exactamente un caso de uso en la composición ejecutable. | Delegada a [`EAC.Application.Runtime`](https://github.com/eac-architecture/eac-application-runtime/blob/develop/docs/architecture/EAC_APPLICATION_RUNTIME.md#22-matriz-de-trazabilidad-de-reglas), regla `EAC-RT-REG-003`. |
+| `EAC-CONF-APP-003` | Todo caso de uso preserva el `CancellationToken`. | [`ApplicationUseCaseTests.cs`](../../tests/EAC.Foundation.UnitTests/ApplicationUseCaseTests.cs) |
+| `EAC-CONF-APP-004` | La validación conserva fallos ordenados e inmutables y respeta cancelación. | [`ValidationOutcomeTests.cs`](../../tests/EAC.Foundation.UnitTests/ValidationOutcomeTests.cs), [`ValidationPublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/ValidationPublicApiContractTests.cs) |
+| `EAC-CONF-APP-005` | La paginación valida número, tamaño, total y navegación con base uno. | [`PageRequestTests.cs`](../../tests/EAC.Foundation.UnitTests/PageRequestTests.cs), [`PageTests.cs`](../../tests/EAC.Foundation.UnitTests/PageTests.cs) |
+| `EAC-CONF-APP-006` | `Page<T>` conserva items y totales en un snapshot consistente e inmutable. | [`PageTests.cs`](../../tests/EAC.Foundation.UnitTests/PageTests.cs) |
+| `EAC-CONF-APP-007` | Un Query Use Case no utiliza Repository, Unit of Work ni Commit. | [`ApplicationArchitectureTests.cs`](../../tests/EAC.Foundation.ArchitectureTests/ApplicationArchitectureTests.cs) |
+| `EAC-CONF-APP-008` | La superficie de Application y sus puertos no exponen providers ni transporte. | [`ApplicationArchitectureTests.cs`](../../tests/EAC.Foundation.ArchitectureTests/ApplicationArchitectureTests.cs), [`PersistencePortArchitectureTests.cs`](../../tests/EAC.Foundation.ArchitectureTests/PersistencePortArchitectureTests.cs) |
+| `EAC-CONF-APP-009` | El ensamblado exporta exactamente los tipos públicos aprobados. | [`PublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/PublicApiContractTests.cs) |
+| `EAC-CONF-APP-010` | El dispatcher local preserva request, respuesta y cancelación tipados. | [`UseCaseDispatcherTests.cs`](../../tests/EAC.Foundation.UnitTests/UseCaseDispatcherTests.cs), [`UseCaseDispatcherPublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/UseCaseDispatcherPublicApiContractTests.cs) |
+| `EAC-CONF-APP-011` | El pipeline preserva request y cancelación y permite cortar la cadena. | [`PipelineBehaviorTests.cs`](../../tests/EAC.Foundation.UnitTests/PipelineBehaviorTests.cs), [`PipelinePublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/PipelinePublicApiContractTests.cs) |
+| `EAC-CONF-APP-012` | Repository escribe agregados; QueryService lee modelos; Unit of Work confirma sin filtrar providers. | [`PersistencePortTests.cs`](../../tests/EAC.Foundation.UnitTests/PersistencePortTests.cs), [`PersistencePublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/PersistencePublicApiContractTests.cs) |
+
+## 16. Criterios de aceptación
 
 El diseño se considera cerrado cuando:
 
@@ -629,7 +652,7 @@ El diseño se considera cerrado cuando:
 - las pruebas arquitectónicas impiden usar Repository desde un Query Use Case;
 - cada contrato público tiene pruebas definidas.
 
-## 16. Decisiones aplazadas
+## 17. Decisiones aplazadas
 
 Se diseñarán con sus paquetes propietarios:
 
@@ -642,7 +665,7 @@ Se diseñarán con sus paquetes propietarios:
 - traducción de errores a error objects: `EAC.Infrastructure.Api.JsonApi`;
 - Commands remotos: Messaging.
 
-## 17. Estado de implementación
+## 18. Estado de implementación
 
 PF-004 está validado en `0.1.0-alpha.17`. `alpha.6..10` estableció CQRS, Use Cases, dispatcher y pipeline; `alpha.11..13` completó Validation, `alpha.14..15` Paginación y `alpha.16` los puertos de persistencia. `alpha.17` cierra la trazabilidad de `EAC-CONF-APP-001..012`, con `APP-002` delegado explícitamente a Runtime por ser propietario de la composición. La evidencia es build Release sin advertencias y 177 pruebas aprobadas.
 

@@ -289,7 +289,25 @@ Agregar un nuevo valor a `ErrorType` requiere analizar consumidores con `switch`
 - publicación determinista del paquete;
 - Source Link, símbolos, SBOM y firma del artefacto.
 
-## 11. Criterios de aceptación
+## 11. Matriz de trazabilidad de reglas
+
+Esta matriz aplica el
+[estándar transversal de trazabilidad](https://github.com/eac-architecture/eac-engineering-governance/blob/develop/docs/standards/testing/RULE_TRACEABILITY_STANDARD.md).
+`eng/capabilities.yml` es el inventario ejecutable de conformidad: cada regla
+declarada allí aparece exactamente una vez en el diseño propietario y al menos
+una prueba la identifica mediante `Trait("Rule", "<ID>")`.
+
+| ID | Regla de diseño | Evidencia ejecutable primaria |
+|---|---|---|
+| `EAC-CONF-FOUND-001` | `Error` conserva clasificación, datos y semántica de igualdad estructural. | [`ErrorTests.cs`](../../tests/EAC.Foundation.UnitTests/ErrorTests.cs) |
+| `EAC-CONF-FOUND-002` | `Error` rechaza códigos, descripciones y clasificaciones inválidos. | [`ErrorTests.cs`](../../tests/EAC.Foundation.UnitTests/ErrorTests.cs) |
+| `EAC-CONF-FOUND-003` | `Result` representa exclusivamente éxito sin error o fallo con error. | [`ResultTests.cs`](../../tests/EAC.Foundation.UnitTests/ResultTests.cs) |
+| `EAC-CONF-FOUND-004` | `Result<T>` conserva el valor de éxito o el error de fallo, incluida la nulabilidad declarada. | [`ResultOfTTests.cs`](../../tests/EAC.Foundation.UnitTests/ResultOfTTests.cs) |
+| `EAC-CONF-FOUND-005` | `Match` ejecuta exactamente una rama y rechaza callbacks nulos. | [`ResultTests.cs`](../../tests/EAC.Foundation.UnitTests/ResultTests.cs), [`ResultOfTTests.cs`](../../tests/EAC.Foundation.UnitTests/ResultOfTTests.cs) |
+| `EAC-CONF-FOUND-006` | La API pública de SharedKernel conserva únicamente los contratos aprobados. | [`PublicApiContractTests.cs`](../../tests/EAC.Foundation.ContractTests/PublicApiContractTests.cs), [`SharedKernelUsageTests.cs`](../../tests/EAC.Foundation.ContractTests/SharedKernelUsageTests.cs) |
+| `EAC-CONF-FOUND-007` | El ensamblado conserva identidad, target, namespaces y dependencias aprobados. | [`AssemblyBoundaryTests.cs`](../../tests/EAC.Foundation.ArchitectureTests/AssemblyBoundaryTests.cs) |
+
+## 12. Criterios de aceptación
 
 El diseño queda cerrado cuando:
 
@@ -300,7 +318,7 @@ El diseño queda cerrado cuando:
 - el paquete no tiene dependencias externas;
 - su API permite evolucionar Application sin modificar el núcleo.
 
-## 12. Decisiones aplazadas
+## 13. Decisiones aplazadas
 
 No se decidirán dentro de este paquete:
 
@@ -317,7 +335,7 @@ Cada punto se tratará cuando corresponda diseñar el paquete propietario.
 
 La acumulación de eventos, entidades, agregados y value objects quedó asignada a [`EAC.Foundation.Domain`](EAC_FOUNDATION_DOMAIN.md).
 
-## 13. Estado de implementación
+## 14. Estado de implementación
 
 El contrato quedó aprobado durante F3 e implementado en F4 dentro de `EAC.Foundation` `0.1.0-alpha.2`. Las reglas `EAC-CONF-FOUND-001` a `EAC-CONF-FOUND-007` disponen de pruebas unitarias, contractuales y arquitectónicas ejecutables. El gate de build genera paquete reproducible y símbolos para `net10.0`. La URL Source Link se verificará cuando el repositorio disponga de remoto; firma, SBOM y publicación se completarán en el gate de release de `1.0.0`. Son evidencias de release, no decisiones de diseño pendientes.
 
