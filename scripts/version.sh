@@ -5,6 +5,10 @@ set -euo pipefail
 version_root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 version_file="$version_root_dir/VERSION"
 
+is_governed_package_version() {
+    [[ "$1" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-(alpha|beta|rc)\.([1-9][0-9]*))?$ ]]
+}
+
 read_package_version() {
     local declared_version
 
@@ -14,8 +18,8 @@ read_package_version() {
     }
 
     declared_version="$(tr -d '[:space:]' < "$version_file")"
-    if [[ ! "$declared_version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-(alpha|beta)\.([1-9][0-9]*)$ ]]; then
-        printf '[ERROR] VERSION must be a SemVer alpha or beta version such as 0.1.0-alpha.18\n' >&2
+    if ! is_governed_package_version "$declared_version"; then
+        printf '[ERROR] VERSION must be a stable or alpha, beta, or rc SemVer version\n' >&2
         return 1
     fi
 

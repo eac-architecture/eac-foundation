@@ -39,6 +39,12 @@ project_version="$(sed -nE 's/.*<Version>([^<]+)<\/Version>.*/\1/p' "$project")"
 project_framework="$(sed -nE 's/.*<TargetFramework>([^<]+)<\/TargetFramework>.*/\1/p' "$root_dir/Directory.Build.props")"
 source "$root_dir/scripts/version.sh"
 package_version="$(resolve_package_version)"
+for supported_version in 1.2.3 1.2.3-alpha.1 1.2.3-beta.2 1.2.3-rc.3; do
+    is_governed_package_version "$supported_version" || {
+        printf '[ERROR] Governed version contract rejected %s\n' "$supported_version" >&2
+        exit 1
+    }
+done
 
 [[ "$manifest_product" == "$project_package" ]] || {
     printf '[ERROR] Manifest product and PackageId do not match\n' >&2

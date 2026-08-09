@@ -6,6 +6,11 @@ El formato sigue Keep a Changelog y el producto utiliza versionado semántico.
 
 ## [Unreleased]
 
+### Changed
+
+- support generic alpha, beta, RC and stable SemVer identities in the package
+  release contract.
+
 ### Added
 
 - estructura inicial del repositorio y solución .NET 10;

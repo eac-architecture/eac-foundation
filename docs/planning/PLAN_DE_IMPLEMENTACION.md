@@ -38,5 +38,9 @@ abierto hasta comprobar un evento real de Pipelines as Code.
 Los gates transversales se definen en
 [EAC Architecture](https://github.com/eac-architecture/eac-engineering-governance).
 
+Los scripts aceptan cualquier serie SemVer gobernada, desde `alpha.N` hasta el
+candidato estable, sin fijar una versión concreta. Pipeline Catalog valida que
+la serie coincida con `release/X.Y.Z` antes de entregar el artefacto.
+
 La incorporación de una capacidad que pertenezca a otro NuGet requiere su
 propio repositorio; no amplía este ensamblado por conveniencia.
