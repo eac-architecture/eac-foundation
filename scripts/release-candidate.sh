@@ -11,7 +11,8 @@ project="$root_dir/src/EAC.Foundation/EAC.Foundation.csproj"
 package_id="$(sed -nE 's/.*<PackageId>([^<]+)<\/PackageId>.*/\1/p' "$project")"
 source "$root_dir/scripts/version.sh"
 version="$(resolve_package_version)"
-commit="${RELEASE_COMMIT:-}"
+head_commit="$(git -c safe.directory="$root_dir" -C "$root_dir" rev-parse HEAD)"
+commit="${RELEASE_COMMIT:-$head_commit}"
 artifacts_dir="${ARTIFACTS_DIR:-$root_dir/artifacts}"
 packages_dir="$artifacts_dir/packages"
 sbom_dir="$artifacts_dir/sbom"
@@ -21,9 +22,14 @@ if [[ -z "$package_id" ]]; then
     printf '[ERROR] PackageId could not be resolved from the project\n' >&2
     exit 1
 fi
-if [[ -z "$commit" ]]; then
-    commit="$(git -C "$root_dir" rev-parse HEAD)"
-fi
+[[ "$commit" == "$head_commit" ]] || {
+    printf '[ERROR] RELEASE_COMMIT must identify the checked-out HEAD\n' >&2
+    exit 1
+}
+[[ -z "$(git -c safe.directory="$root_dir" -C "$root_dir" status --porcelain --untracked-files=no)" ]] || {
+    printf '[ERROR] A release candidate requires a clean tracked working tree\n' >&2
+    exit 1
+}
 
 rm -rf "$packages_dir" "$sbom_dir" "$evidence_dir"
 mkdir -p "$packages_dir" "$sbom_dir" "$evidence_dir"
