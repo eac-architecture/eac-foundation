@@ -41,6 +41,8 @@ Los gates transversales se definen en
 Los scripts aceptan cualquier serie SemVer gobernada, desde `alpha.N` hasta el
 candidato estable, sin fijar una versión concreta. Pipeline Catalog valida que
 la serie coincida con `release/X.Y.Z` antes de entregar el artefacto.
+`RELEASE_COMMIT`, cuando se inyecta, identifica exactamente el `HEAD` limpio
+que produjo el candidato, conforme al contrato Bash transversal.
 
 La incorporación de una capacidad que pertenezca a otro NuGet requiere su
 propio repositorio; no amplía este ensamblado por conveniencia.
