@@ -17,7 +17,7 @@ reglas funcionales.
 | PF-002 | SharedKernel | Validado |
 | PF-003 | Domain | Validado |
 | PF-004 | Application | Validado |
-| PF-005 | maduración de versiones preliminares hacia `1.0.0` | En curso |
+| PF-005 | maduración de versiones preliminares hacia `1.0.0` | Validado hasta `0.1.0-rc.3`; estable diferida |
 
 ## 2.1 Cierre transversal de configuración
 
@@ -32,14 +32,19 @@ PF-005 se ejecuta mediante estos bloques, en orden:
 | Bloque | Alcance | Estado | Evidencia |
 |---|---|---|---|
 | CI-001 | contrato Bash y Pipeline Tekton para G0-G4 | Completado | Pipeline ejecutado sobre `1098b95`: validación, build y 177 pruebas aprobados |
-| CI-002 | eventos de pull request y rama principal con Pipelines as Code | En curso | binding publicado; registro y evento real pendientes |
-| REL-001 | candidato alpha/beta, SBOM y evidencias para G5-G7 | En curso | `VERSION` como fuente única y contrato local aprobado; ejecución Tekton pendiente |
-| REL-002 | firma, procedencia y publicación para G8 | Pendiente | NuGet estable e inmutable |
+| CI-002 | eventos de pull request y rama principal con Pipelines as Code | Completado | ejecuciones remotas exitosas mediante el binding reutilizable |
+| REL-001 | candidato integrable, SBOM y evidencias para G5-G7, sin publicación | Completado | paquete, símbolos, hashes, SBOM y smoke consumidor generados desde el build verificado |
+| REL-002 | integración remota mediante el pipeline NuGet reutilizable | Completado | PipelineRuns exitosas sobre commits remotos; sin Pipelines o Tasks locales |
+| REL-003 | publicación gobernada de alpha, beta y RC sin reconstruir el candidato | Completado | `0.1.0-rc.3` publicado mediante Pipeline Catalog |
+| REL-004 | promoción estable para G8 | Diferido | NuGet estable e inmutable sujeto a aprobación explícita |
 
-El siguiente resultado es ejecutar REL-001 mediante la Pipeline compartida
-`eac-nuget-release-candidate`. La operación está en
-[Candidato de release](../operations/RELEASE_CANDIDATE.md). CI-002 permanece
-abierto hasta comprobar un evento real de Pipelines as Code.
+La reconciliación de entrega confirma `EAC.Foundation 0.1.0-rc.3`, tag
+`v0.1.0-rc.3` y commit `bed36c9d22a68323c1b6e433df0ea3a7aaa8442d`.
+La PipelineRun `eac-nuget-prerelease-publication-run-xbfgf` terminó en
+`Succeeded`; registró el paquete SHA-256
+`2e8995b2458cfb4e796e7dfee126b4bdc3deac5ea034bd5449921171ff0ef1b1` y el
+SBOM SHA-256 `b54361d06dda7a807d7471728f17f0e9798a321e81e0bd1e730c89402f284760`.
+El siguiente gate de entrega es exclusivamente la promoción estable coordinada.
 
 Los gates transversales se definen en
 [EAC Architecture](https://github.com/eac-architecture/eac-engineering-governance).
