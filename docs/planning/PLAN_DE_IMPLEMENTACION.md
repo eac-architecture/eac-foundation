@@ -19,6 +19,12 @@ reglas funcionales.
 | PF-004 | Application | Validado |
 | PF-005 | maduración de versiones preliminares hacia `1.0.0` | En curso |
 
+## 2.1 Cierre transversal de configuración
+
+| ID | Alcance | Estado | Evidencia |
+|---|---|---|---|
+| CFG-001 | Declarar instalación y consumo tipado sin inventar configuración ambiental para un paquete de contratos y primitivas | Completado | README documenta ausencia deliberada de `appsettings`, variables, secretos, recursos implícitos y recarga |
+
 ## 3. Próximo incremento
 
 PF-005 se ejecuta mediante estos bloques, en orden:

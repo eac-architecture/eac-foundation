@@ -35,6 +35,34 @@ versiones y pipelines propios.
 - [Application](docs/architecture/EAC_FOUNDATION_APPLICATION.md)
 - [ADR del componente](docs/decisions/ADR-0011-eac-foundation.md)
 
+## Configuración y consumo
+
+`EAC.Foundation` no posee configuración ambiental ni registra servicios. No
+declara una sección `appsettings`, variables de entorno, secretos, conexiones,
+workers o recursos implícitos. Instalar el paquete solo hace disponibles sus
+contratos y primitivas; cada consumidor selecciona en código los tipos que
+necesita.
+
+```xml
+<PackageReference Include="EAC.Foundation" Version="0.1.0-rc.2" />
+```
+
+```csharp
+public sealed record IssueOrderCommand(Guid OrderId) : ICommand;
+
+public sealed class Order : AggregateRoot<Guid>
+{
+    public Order(Guid id) : base(id) { }
+}
+```
+
+No existe una configuración JSON equivalente porque IDs, Commands, Queries,
+Aggregate Roots y tipos de error son contratos CLR, no settings operativos.
+La configuración de persistencia, transporte, seguridad u observabilidad
+pertenece a sus componentes propietarios. Actualizar esos valores o el paquete
+requiere el ciclo de despliegue del servicio consumidor; Foundation no mantiene
+estado recargable.
+
 ## Estado
 
 El producto se encuentra en implementación inicial. `VERSION` declara
