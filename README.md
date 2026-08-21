@@ -44,7 +44,7 @@ contratos y primitivas; cada consumidor selecciona en código los tipos que
 necesita.
 
 ```xml
-<PackageReference Include="EAC.Foundation" Version="0.1.0-rc.2" />
+<PackageReference Include="EAC.Foundation" Version="0.1.0-rc.3" />
 ```
 
 ```csharp
@@ -65,9 +65,9 @@ estado recargable.
 
 ## Estado
 
-El producto se encuentra en implementación inicial. `VERSION` declara
-`0.1.0-alpha.18` como versión preliminar vigente; todavía no representa una
-publicación final ni estable.
+La línea de integración vigente es `0.1.0-rc.3`, publicada mediante el
+Pipeline Catalog y disponible en NuGet.org. La promoción estable permanece
+diferida y requiere aprobación explícita.
 
 El primer incremento establece:
 
