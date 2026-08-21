@@ -25,6 +25,7 @@ versiones y pipelines propios.
 
 ## Documentación
 
+- [Guía de consumo y configuración](docs/guides/CONSUMPTION_AND_CONFIGURATION.md)
 - [Índice documental](docs/INDICE_DOCUMENTAL.md)
 - [Plan de implementación](docs/planning/PLAN_DE_IMPLEMENTACION.md)
 - [Integración continua](docs/operations/CONTINUOUS_INTEGRATION.md)
@@ -132,9 +133,9 @@ eac-foundation/
 └── global.json
 ```
 
-El siguiente incremento consolidará el flujo de candidatos alpha y beta. La
-publicación final se diseñará posteriormente y no forma parte del estado
-actual.
+La línea RC está cerrada en `0.1.0-rc.3`. Cualquier evolución comienza en una
+rama `feature/*`; la promoción estable permanece sujeta al cierre coordinado y
+a aprobación explícita.
 
 ## Validación local
 
