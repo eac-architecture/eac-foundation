@@ -42,7 +42,7 @@ El archivo `.tekton/continuous-integration.yaml` contiene únicamente:
 - los eventos `pull_request` y `push` dirigidos a `main`;
 - los parámetros dinámicos de repositorio y commit;
 - el workspace efímero y la Service Account de CI;
-- la referencia inmutable a EAC Pipeline Catalog `v0.1.0`.
+- la referencia inmutable a EAC Pipeline Catalog `v0.4.2`.
 
 La Pipeline `eac-nuget-ci` y sus Tasks pertenecen al repositorio
 `eac-pipeline-catalog`.
@@ -71,7 +71,7 @@ Existen tres entradas al mismo contrato:
    Pipeline instalada, indicando el repositorio y la revisión.
 
 Foundation no instala Tasks/Pipelines ni contiene un iniciador Tekton manual.
-Pipelines as Code resuelve la Pipeline remota fijada a `v0.1.0`, enlaza
+Pipelines as Code resuelve la Pipeline remota fijada a `v0.4.2`, enlaza
 `{{source_url}}` y `{{revision}}`, y genera un `PipelineRun` autocontenido. La
 instalación y la ejecución manual pertenecen a `eac-pipeline-catalog`.
 
@@ -91,6 +91,6 @@ o Results.
 
 CI-001 y la ejecución manual del perfil compartido quedaron validados contra
 la revisión `c524e72`: build sin warnings y 177 pruebas aprobadas. El binding
-de CI-002 referencia EAC Pipeline Catalog `v0.1.0`; su cierre requiere
+de CI-002 referencia EAC Pipeline Catalog `v0.4.2`; su cierre requiere
 restaurar el recurso `Repository` y comprobar un evento real de Pipelines as
 Code.
