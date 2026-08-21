@@ -4,7 +4,7 @@ metadata:
   name: eac-foundation-ci
   annotations:
     pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
-    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-target-branch: "[main, develop]"
     pipelinesascode.tekton.dev/max-keep-runs: "5"
     pipelinesascode.tekton.dev/pipeline: >-
       https://raw.githubusercontent.com/eac-architecture/eac-pipeline-catalog/v0.4.2/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml
