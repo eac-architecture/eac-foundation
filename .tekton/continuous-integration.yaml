@@ -7,11 +7,11 @@ metadata:
     pipelinesascode.tekton.dev/on-target-branch: "[main, develop]"
     pipelinesascode.tekton.dev/max-keep-runs: "5"
     pipelinesascode.tekton.dev/pipeline: >-
-      https://raw.githubusercontent.com/eac-architecture/eac-pipeline-catalog/v0.4.2/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml
+      https://raw.githubusercontent.com/eac-architecture/eac-pipeline-catalog/v0.4.4/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml
   labels:
     app.kubernetes.io/name: eac-foundation
     app.kubernetes.io/component: continuous-integration
-    app.kubernetes.io/version: 0.4.2
+    app.kubernetes.io/version: 0.4.4
 spec:
   pipelineRef:
     name: eac-nuget-ci
