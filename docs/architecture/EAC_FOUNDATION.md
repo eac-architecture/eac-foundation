@@ -114,7 +114,8 @@ Todas las familias aplican el [estándar de conexiones y stores de datos](https:
 | Paquete | Responsabilidad |
 |---|---|
 | [`EAC.Infrastructure.Persistence`](https://github.com/eac-architecture/eac-infrastructure-persistence/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE.md) | núcleo neutral, transacción local e integración con Runtime |
-| [`EAC.Infrastructure.Persistence.EntityFrameworkCore`](https://github.com/eac-architecture/eac-infrastructure-persistence-efcore/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE_EFCORE.md) | Repository, Unit of Work, QueryService, eventos y Outbox/Inbox sobre EF Core |
+| [`EAC.Infrastructure.Persistence.EntityFrameworkCore`](https://github.com/eac-architecture/eac-infrastructure-persistence-efcore/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE_EFCORE.md) | Repository, Unit of Work, QueryService y eventos sobre EF Core, sin dependencia de Messaging |
+| [`EAC.Infrastructure.Persistence.EntityFrameworkCore.Messaging`](https://github.com/eac-architecture/eac-infrastructure-persistence-efcore-messaging/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE_EFCORE_MESSAGING.md) | adaptador opcional Outbox/Inbox sobre EF Core |
 | [`EAC.Infrastructure.Persistence.MongoDB`](https://github.com/eac-architecture/eac-infrastructure-persistence-mongodb/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE_MONGODB.md) | Aggregate Repository, QueryService, atomicidad documental y scope transaccional opcional |
 | [`EAC.Infrastructure.Persistence.Marten`](https://github.com/eac-architecture/eac-infrastructure-persistence-marten/blob/main/docs/architecture/EAC_INFRASTRUCTURE_PERSISTENCE_MARTEN.md) | Documents, Event Store, sesión, proyecciones y Outbox/Inbox Marten |
 | [`EAC.Infrastructure.Search.Elasticsearch`](https://github.com/eac-architecture/eac-infrastructure-search-elasticsearch/blob/main/docs/architecture/EAC_INFRASTRUCTURE_SEARCH_ELASTICSEARCH.md) | QueryService y Projection Writer mediante bindings tipados; Schema Manager para schema, aliases e índices físicos |
@@ -162,6 +163,7 @@ eac-infrastructure-observability       # EAC.Infrastructure.Observability
 eac-infrastructure-security            # EAC.Infrastructure.Security
 eac-infrastructure-persistence         # EAC.Infrastructure.Persistence
 eac-infrastructure-persistence-efcore  # EAC.Infrastructure.Persistence.EntityFrameworkCore
+eac-infrastructure-persistence-efcore-messaging  # EAC.Infrastructure.Persistence.EntityFrameworkCore.Messaging
 eac-infrastructure-persistence-mongodb # EAC.Infrastructure.Persistence.MongoDB
 eac-infrastructure-persistence-marten  # EAC.Infrastructure.Persistence.Marten
 eac-infrastructure-search-elasticsearch # EAC.Infrastructure.Search.Elasticsearch
