@@ -31,8 +31,8 @@ for script in "$root_dir"/scripts/*.sh; do
     bash -n "$script"
 done
 
-grep -q 'eac-pipeline-catalog/v0.4.2/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml' "$root_dir/.tekton/continuous-integration.yaml" || {
-    printf '[ERROR] NuGet CI must use the immutable Pipeline Catalog v0.4.2 contract\n' >&2
+grep -q 'eac-pipeline-catalog/v0.4.4/catalog/profiles/packages/nuget/pipelines/continuous-integration.yaml' "$root_dir/.tekton/continuous-integration.yaml" || {
+    printf '[ERROR] NuGet CI must use the immutable Pipeline Catalog v0.4.4 contract\n' >&2
     exit 1
 }
 
