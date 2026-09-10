@@ -107,6 +107,16 @@ Es un marcador para expresar límites de consistencia. No contiene callbacks de 
 
 ### 4.4 IHasDomainEvents
 
+La interfaz aditiva `IAcknowledgeDomainEvents : IHasDomainEvents` permite
+reconocer únicamente las instancias del snapshot confirmado mediante
+`AcknowledgeDomainEvents(IReadOnlyCollection<IDomainEvent>)`. `AggregateRoot<TId>`
+la implementa usando identidad de referencia, conserva eventos posteriores y
+tolera el reconocimiento repetido del mismo snapshot. Los implementadores
+existentes de `IHasDomainEvents` no reciben nuevos miembros obligatorios.
+La frontera transaccional automática exige esta capacidad antes de guardar y
+reconoce el snapshot solo tras confirmar negocio y Outbox. Las pruebas de
+`EAC-CONF-DOM-004` cubren igualdad por valor, eventos posteriores y repetición.
+
 ```csharp
 using EAC.Foundation.SharedKernel.Domain;
 
@@ -214,7 +224,7 @@ public sealed class Document : AggregateRoot<DocumentId>
 
 El agregado recibe tiempo e identificadores desde el caso de uso. El paquete de dominio no usa directamente `DateTimeOffset.UtcNow` ni `Guid.NewGuid()`.
 
-## 6. Integración futura con Outbox
+## 6. Integración con Outbox
 
 ```mermaid
 sequenceDiagram
@@ -231,7 +241,7 @@ sequenceDiagram
     DB->>OB: Convertir eventos a registros Outbox
     DB->>DB: Guardar agregado y Outbox en transacción local
     DB-->>AG: Commit confirmado
-    DB->>AG: DequeueDomainEvents()
+    DB->>AG: AcknowledgeDomainEvents(snapshot)
 ```
 
 ### Orden explicado
@@ -242,9 +252,9 @@ sequenceDiagram
 4. El adaptador lee un snapshot de `DomainEvents` mediante `IHasDomainEvents`, sin limpiar todavía la colección ni asumir el tipo del identificador.
 5. Outbox crea su envelope y metadata sin modificar el evento de dominio.
 6. Persistencia guarda cambios y mensajes Outbox en la misma transacción local.
-7. Solo después de confirmar el commit se invoca `DequeueDomainEvents()` para limpiar los eventos procesados.
+7. Solo después de confirmar el commit se invoca `AcknowledgeDomainEvents(snapshot)` para reconocer exactamente los eventos procesados y conservar los posteriores.
 
-Si el commit falla, no se invoca `DequeueDomainEvents()` y se descarta o reintenta la unidad completa según la política transaccional. El objetivo es evitar pérdida de eventos, reflexión sobre nombres de propiedades, conversión forzada a `Guid` y dependencia del adaptador respecto de la clase concreta.
+Si el commit falla, no se reconoce el snapshot y se descarta o reintenta la unidad completa según la política transaccional. El objetivo es evitar pérdida de eventos, reflexión sobre nombres de propiedades, conversión forzada a `Guid` y dependencia del adaptador respecto de la clase concreta. `DequeueDomainEvents()` permanece como API de extracción explícita compatible; no sustituye el reconocimiento preciso en el commit automático.
 
 ## 7. Decisiones de diseño
 

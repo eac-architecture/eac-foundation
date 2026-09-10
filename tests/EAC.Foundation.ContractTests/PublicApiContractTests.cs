@@ -35,6 +35,7 @@ public sealed class PublicApiContractTests
         "EAC.Foundation.Application.Validation.ValidationOutcome",
         "EAC.Foundation.Domain.AggregateRoot`1",
         "EAC.Foundation.Domain.Entity`1",
+        "EAC.Foundation.Domain.IAcknowledgeDomainEvents",
         "EAC.Foundation.Domain.IAggregateRoot",
         "EAC.Foundation.Domain.IEntity`1",
         "EAC.Foundation.Domain.IHasDomainEvents",

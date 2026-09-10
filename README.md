@@ -66,6 +66,12 @@ estado recargable.
 
 ## Estado
 
+La evolución en desarrollo añade `IAcknowledgeDomainEvents` para reconocer
+solo los eventos de un snapshot confirmado. `AggregateRoot<TId>` conserva los
+eventos que no pertenecen a ese snapshot; `IHasDomainEvents` y
+`DequeueDomainEvents()` mantienen sus contratos existentes. El cambio se
+consume mediante referencias a proyectos hasta el cierre de publicación.
+
 La línea de integración vigente es `0.1.0-rc.3`, publicada mediante el
 Pipeline Catalog y disponible en NuGet.org. La promoción estable permanece
 diferida y requiere aprobación explícita.
