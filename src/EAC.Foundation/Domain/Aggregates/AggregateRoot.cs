@@ -7,7 +7,7 @@ namespace EAC.Foundation.Domain;
 /// Provides optional ordered domain-event accumulation for an aggregate root.
 /// </summary>
 /// <typeparam name="TId">The aggregate identifier type.</typeparam>
-public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot, IHasDomainEvents
+public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot, IAcknowledgeDomainEvents
     where TId : notnull
 {
     private readonly List<IDomainEvent> _domainEvents = [];
@@ -30,6 +30,14 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot, IHasDoma
 
     /// <inheritdoc />
     public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEventsView;
+
+    /// <inheritdoc />
+    public void AcknowledgeDomainEvents(IReadOnlyCollection<IDomainEvent> domainEvents)
+    {
+        ArgumentNullException.ThrowIfNull(domainEvents);
+        var acknowledged = new HashSet<IDomainEvent>(domainEvents, ReferenceEqualityComparer.Instance);
+        _domainEvents.RemoveAll(acknowledged.Contains);
+    }
 
     /// <summary>Adds a domain event to the end of the pending sequence.</summary>
     /// <param name="domainEvent">The domain event raised by the aggregate.</param>

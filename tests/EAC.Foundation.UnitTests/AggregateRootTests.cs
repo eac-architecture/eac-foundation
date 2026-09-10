@@ -114,6 +114,24 @@ public sealed class AggregateRootTests
         Assert.Empty(aggregate.DomainEvents);
     }
 
+    [Fact(DisplayName = "Acknowledges exact committed instances and preserves later or equal events")]
+    [Trait("Rule", "EAC-CONF-DOM-004")]
+    public void AcknowledgementPreservesUncommittedEvents()
+    {
+        var aggregate = new TestAggregate("aggregate-100");
+        var committed = CreateEvent("b88a4337-d33e-4b06-9965-aa1425672982", 1);
+        var equalButUncommitted = committed with { };
+        aggregate.Record(committed);
+        var snapshot = aggregate.DomainEvents.ToArray();
+        aggregate.Record(equalButUncommitted);
+
+        aggregate.AcknowledgeDomainEvents(snapshot);
+        aggregate.AcknowledgeDomainEvents(snapshot);
+
+        Assert.Same(equalButUncommitted, Assert.Single(aggregate.DomainEvents));
+        Assert.Throws<ArgumentNullException>(() => aggregate.AcknowledgeDomainEvents(null!));
+    }
+
     private static TestDomainEvent CreateEvent(string eventId, int sequence) =>
         new(
             Guid.Parse(eventId),
