@@ -44,6 +44,7 @@ public sealed class PublicApiContractTests
         "EAC.Foundation.SharedKernel.Results.Error",
         "EAC.Foundation.SharedKernel.Results.ErrorType",
         "EAC.Foundation.SharedKernel.Results.IError",
+        "EAC.Foundation.SharedKernel.Results.IResultOutcome",
         "EAC.Foundation.SharedKernel.Results.Result",
         "EAC.Foundation.SharedKernel.Results.Result`1",
     ];
@@ -177,6 +178,7 @@ public sealed class PublicApiContractTests
     public void InterfaceSnapshotMatchesApprovedProperties()
     {
         Assert.Equal(ApprovedErrorProperties, GetPublicPropertySnapshot(typeof(IError)));
+        Assert.Equal(["IsFailure:System.Boolean", "IsSuccess:System.Boolean"], GetPublicPropertySnapshot(typeof(IResultOutcome)));
         Assert.Equal(ApprovedDomainEventProperties, GetPublicPropertySnapshot(typeof(IDomainEvent)));
     }
 
