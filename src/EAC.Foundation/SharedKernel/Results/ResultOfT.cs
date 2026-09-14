@@ -6,7 +6,7 @@ namespace EAC.Foundation.SharedKernel.Results;
 /// Represents the outcome of an operation that returns a value on success.
 /// </summary>
 /// <typeparam name="TValue">The successful value type.</typeparam>
-public sealed class Result<TValue>
+public sealed class Result<TValue> : IResultOutcome
 {
     private readonly TValue? value;
 

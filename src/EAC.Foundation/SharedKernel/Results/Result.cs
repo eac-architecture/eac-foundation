@@ -3,7 +3,7 @@ namespace EAC.Foundation.SharedKernel.Results;
 /// <summary>
 /// Represents the outcome of an operation that does not return a value.
 /// </summary>
-public sealed class Result
+public sealed class Result : IResultOutcome
 {
     private Result(IError? error)
     {

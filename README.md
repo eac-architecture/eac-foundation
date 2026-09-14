@@ -64,6 +64,10 @@ pertenece a sus componentes propietarios. Actualizar esos valores o el paquete
 requiere el ciclo de despliegue del servicio consumidor; Foundation no mantiene
 estado recargable.
 
+`Result` y `Result<T>` implementan el contrato de sólo lectura
+`IResultOutcome`. Los runtimes transversales pueden clasificar éxito o fallo sin
+reflexión, sin conocer el valor y sin acceder a errores o payloads.
+
 ## Estado
 
 La evolución en desarrollo añade `IAcknowledgeDomainEvents` para reconocer
