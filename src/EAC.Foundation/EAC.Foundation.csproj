@@ -10,7 +10,7 @@
     <PackageTags>eac;foundation;ddd;cqrs;clean-architecture</PackageTags>
     <Version>0.0.0-local</Version>
     <IsPackable>true</IsPackable>
-    <IsAotCompatible>true</IsAotCompatible>
+    <IsAotCompatible>false</IsAotCompatible>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

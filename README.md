@@ -1,5 +1,9 @@
 # EAC Foundation
 
+> Desde 2026-10-09, Native AOT queda fuera del alcance por decisión del usuario.
+> No se declara compatibilidad ni se exige su gate. Las referencias históricas
+> no constituyen soporte vigente; build y tests ordinarios siguen siendo obligatorios.
+
 EAC Foundation es el núcleo de un ecosistema de productos técnicos
 reutilizables para .NET 10. Su diseño no presupone un estilo de despliegue:
 puede utilizarse en microservicios, monolitos modulares, APIs, workers,
